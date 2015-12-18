@@ -11,6 +11,8 @@ var _ = require('lodash'),
     path = require('path'),
     settings = require('./../config');
 
+var gravatar = require('./../core/gravatar');
+
 module.exports = function() {
 
     var app = this.app,
@@ -40,7 +42,8 @@ module.exports = function() {
         }).sample().value();
         res.render('login.html', {
             photo: image,
-            auth: auth.providers
+            auth: auth.providers,
+            gravatarPath: gravatar.path
         });
     });
 

@@ -11,6 +11,7 @@ var bcrypt = require('bcryptjs'),
     mongoose = require('mongoose'),
     uniqueValidator = require('mongoose-unique-validator'),
     validate = require('mongoose-validate'),
+    gravatar = require('./../core/gravatar'),
     settings = require('./../config');
 
 var ObjectId = mongoose.Schema.Types.ObjectId;
@@ -109,6 +110,18 @@ UserSchema.virtual('local').get(function() {
 
 UserSchema.virtual('avatar').get(function() {
     return md5(this.email);
+});
+
+UserSchema.virtual('avatarURL20').get(function() {
+    return gravatar.url(this.avatar, 20);
+});
+
+UserSchema.virtual('avatarURL30').get(function() {
+    return gravatar.url(this.avatar, 30);
+});
+
+UserSchema.virtual('avatarURL50').get(function() {
+    return gravatar.url(this.avatar, 50);
 });
 
 UserSchema.pre('save', function(next) {
@@ -271,7 +284,9 @@ UserSchema.method('toJSON', function() {
         lastName: this.lastName,
         username: this.username,
         displayName: this.displayName,
-        avatar: this.avatar
+        avatarURL20: this.avatarURL20,
+        avatarURL30: this.avatarURL30,
+        avatarURL50: this.avatarURL50
     };
 });
 
