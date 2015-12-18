@@ -38,3 +38,6 @@ auth:
   providers: [local]
   local:
     enableRegistration: true
+
+avatar:
+  url: https://www.gravatar.com/avatar
