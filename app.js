@@ -97,7 +97,8 @@ app.use(helmet.contentSecurityPolicy({
     fontSrc: ['\'self\'', 'fonts.gstatic.com'],
     mediaSrc: ['\'self\''],
     objectSrc: ['\'self\''],
-    imgSrc: ['*']
+    // imgSrc: ['*']
+    imgSrc: ['\'self\'', 'data:', 'https://www.gravatar.com']
 }));
 
 var bundles = {};
