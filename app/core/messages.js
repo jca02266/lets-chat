@@ -90,7 +90,13 @@ MessageManager.prototype.list = function(options, cb) {
     }
 
     if (options.query) {
-        find = find.find({$text: {$search: options.query}});
+        // find = find.find({$text: {$search: options.query}});
+
+        // regular expression searching
+        // see http://hayachi617.blogspot.jp/2015/06/lets-chat.html
+
+        var r = new RegExp(options.query, "i")
+        find = find.find({"text": {$regex:r}});
     }
 
     if (options.expand) {
