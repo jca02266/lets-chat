@@ -27,6 +27,11 @@ var _ = require('lodash'),
     auth = require('./app/auth/index'),
     core = require('./app/core/index');
 
+var gravatar = require('./app/core/gravatar');
+if (settings.avatar && settings.avatar.url) {
+  gravatar.path = settings.avatar.url;
+}
+
 var MongoStore = connectMongo(express.session),
     httpEnabled = settings.http && settings.http.enable,
     httpsEnabled = settings.https && settings.https.enable,
@@ -97,7 +102,8 @@ app.use(helmet.contentSecurityPolicy({
     fontSrc: ['\'self\'', 'fonts.gstatic.com'],
     mediaSrc: ['\'self\''],
     objectSrc: ['\'self\''],
-    imgSrc: ['*']
+    // imgSrc: ['*']
+    imgSrc: ['\'self\'', 'data:', gravatar.host()]
 }));
 
 var bundles = {};

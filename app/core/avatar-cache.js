@@ -1,6 +1,7 @@
 'use strict';
 
 var crypto = require('crypto'),
+    gravatar = require('./gravatar'),
     http = require('http');
 
 function AvatarCache(options) {
@@ -17,7 +18,7 @@ AvatarCache.prototype.get = function(userId) {
 
 AvatarCache.prototype.add = function(user) {
     var userId = (user.id || user._id).toString();
-    var url = 'http://www.gravatar.com/avatar/' + user.avatar + '?s=64';
+    var url = gravatar.basic_url(user.avatar, 64);
 
     http.get(url, function(response) {
         if (response.statusCode !== 200) {
