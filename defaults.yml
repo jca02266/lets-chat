@@ -75,3 +75,6 @@ rooms:
 
 i18n:
   locale: en
+
+avatar:
+  url: https://www.gravatar.com/avatar
