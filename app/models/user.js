@@ -113,15 +113,15 @@ UserSchema.virtual('avatar').get(function() {
 });
 
 UserSchema.virtual('avatarURL20').get(function() {
-    return gravatar.url(this.avatar, 20);
+    return gravatar.url(this.avatar, 20, 'mm');
 });
 
 UserSchema.virtual('avatarURL30').get(function() {
-    return gravatar.url(this.avatar, 30);
+    return gravatar.url(this.avatar, 30, 'mm');
 });
 
 UserSchema.virtual('avatarURL50').get(function() {
-    return gravatar.url(this.avatar, 50);
+    return gravatar.url(this.avatar, 50, 'mm');
 });
 
 UserSchema.pre('save', function(next) {
